@@ -1,0 +1,84 @@
+  <ion-modal-view view-title="ok">
+
+    <ion-header-bar 
+        ng-class="{ 
+        'bar-energized' : data.statut==0,
+        'bar-balanced' : data.statut==1,
+        'bar-positive' : data.statut==2,
+        'bar-calm' : data.statut==3
+
+      }"
+    >
+
+      <div class="buttons">
+        <a class="button icon-left ion-ios-close-outline button-clear" ng-click="fermerModal()"><b> fermer</b>
+        </a>
+      </div>
+
+
+      <h1 class="title">A valider</h1>
+    
+ 
+    </ion-header-bar>
+
+    <ion-content class="padding">
+
+      <div class="card">
+        <div class="item item-divider">
+          Informations sur le client
+        </div>
+        <div class="item item-text-wrap">
+          <div>
+            <b>Date :</b> {{dateJav(data.dtsaisie) | date:'dd/MM/yyyy - hh:mm'}}
+          </div>
+          <div>
+            <b>Nom :</b> {{data.nom}}
+          </div>
+          <div>
+            <b>Prenom :</b> {{data.prenom}}
+          </div>
+          <div>
+            <b>Tél. :</b> {{data.tel}}
+          </div>
+          <div>
+            <b>Ville :</b> {{ville(data.ville).nom}}
+          </div>
+          <div>
+            <b>Adresse :</b> {{data.adresse}}
+          </div>
+        </div>
+        
+      </div>
+
+      <div class="card">
+        <div class="item item-divider item-icon-right">
+          Le panier
+          <i class="icon">{{data.total}}€</i>
+        </div>
+        <div class="item item-text-wrap" ng-repeat="article in articles">
+          <div>Article : {{article.nom}}</div>
+          <div>Taille : {{tailles[article.active]}}
+          </div>
+          <div>Quantité : {{article.quantite}}</div>
+          <div>Total : {{article.total}}</div>
+        </div>
+        <div class="item item-divider">
+          <div class="droite">Total : {{data.total}}€</div>
+          
+        </div>
+      </div>
+
+  <div class="button-bar" ng-show="data.statut==0">
+    <a class="button button-balanced" ng-click="statutService(data.id,1)">Accepter</a>
+    <a class="button button-assertive">Rejeter</a>
+  </div>   
+
+  <a class="button button-block button-positive" ng-click="statutService(data.id,2)" ng-show="data.statut==1">Passer en cours</a>
+  <a class="button button-block button-calm" ng-click="statutService(data.id,3)" ng-show="data.statut==2">Passer en livraison</a>
+  <a class="button button-block button-assertive" ng-click="statutService(data.id,4)" ng-show="data.statut==3">Cloturer la commande</a>
+
+
+
+    </ion-content>
+
+  </ion-modal-view>

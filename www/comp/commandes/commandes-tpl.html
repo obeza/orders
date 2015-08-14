@@ -1,0 +1,126 @@
+<ion-view view-title="{{titres[statut]}}" hide-back-button="true">
+
+<ion-nav-bar class="{{barColor[statut]}}">
+
+  <ion-nav-buttons side="left">
+        <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
+        </button>
+  </ion-nav-buttons>
+
+</ion-nav-bar>
+
+  <ion-content class="padding">
+
+ <div class="list">
+ 
+    <div class="list card">
+      <div class="item item-divider ">Clients</div>
+
+      <div  
+      ng-click="voir($index)"    
+      ng-repeat="data in datas"
+      class="item item-icon-right"
+      ng-class="{ 
+        'bord-energized' : data.statut==1,
+        'bord-balanced' : data.statut==2,
+        'bord-positive' : data.statut==3,
+        'bord-calm' : data.statut==4
+
+      }"
+      >
+        <div>
+          <b>Date :</b> {{dateJav(data.dtsaisie) | date:'dd/MM/yyyy - hh:mm'}}
+        </div>
+        <div>
+          <b>Nom :</b> {{data.nom}}
+        </div>
+        <div>
+          <b>Prenom :</b> {{data.prenom}}
+        </div>
+        <i class="icon">{{data.total}}€</i>
+      </div>
+    </div>
+
+</div>
+
+  <button class="button " ng-click="charge()">recharge</button>
+
+<button on-drag="onDrag()" class="button">Test</button>
+
+  </ion-content>
+
+<ion-footer-bar align-title="left" class="bar-light">
+<div class="tabs tabs-icon-top tabs-striped tabs-background-stable">
+  
+    <a 
+    href="#/app/commandes/toutes" 
+    nav-transition="none" 
+    class="tab-item has-badge "
+    ng-class="{ 'active' : navigation['toutes'] }"
+    
+    >
+    <i class="icon ion-star"></i>
+      Toutes
+      <span class="badge badge-assertive">{{pastilles[0]}}</span>
+    </a >
+
+  
+    <a 
+      href="#/app/commandes/1" 
+      nav-transition="none" 
+      class="tab-item has-badge tab-fond-energized"
+      ng-class="{ 'active' : navigation[0] }"
+      
+    >
+      <i class="icon ion-star"></i>
+      A capturer
+      <span class="badge badge-assertive">{{pastilles[1]}}</span>
+    </a >
+
+    <a 
+      href="#/app/commandes/2" 
+      nav-transition="none" 
+      class="tab-item has-badge tab-fond-balanced"
+      ng-class="{ 'active' : navigation[1] }"
+      
+    >
+      <i class="icon ion-star"></i>
+      Capturées
+      <span class="badge badge-assertive">{{pastilles[2]}}</span>
+    </a >
+  
+ 
+    <a 
+      href="#/app/commandes/3" 
+      nav-transition="none" 
+      class="tab-item has-badge tab-fond-positive"
+      ng-class="{ 'active' : navigation[2] }"
+      
+    >
+      <i class="icon ion-star"></i>
+      En cours
+      <span class="badge badge-assertive">{{pastilles[3]}}</span>
+    </a >
+  
+    <a 
+      href="#/app/commandes/4" 
+      nav-transition="none" 
+      class="tab-item has-badge tab-fond-calm"
+      ng-class="{ 'active' : navigation[3] }"
+    >
+      <i class="icon ion-star"></i>
+      En livraison
+      <span class="badge badge-assertive">{{pastilles[4]}}</span>
+    </a >
+
+</div>
+</ion-footer-bar>
+
+
+</ion-view>
+
+
+
+
+
+
