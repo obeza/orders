@@ -1,18 +1,23 @@
 <ion-view hide-back-button="true" hide-nav-bar="true">
 
-	<ion-content class="padding login-padding">
+	<ion-content class="padding login">
 
-		<div class="list">
-		  <label class="item item-input">
-		    <span class="input-label">Username</span>
-		    <input type="text">
-		  </label>
-		  <label class="item item-input">
-		    <span class="input-label">Password</span>
-		    <input type="password">
-		  </label>
-		  <button class="button button-block button-positive">
-  			Se Connecter
+		<div class="list list-inset">
+			<label class="item item-input">
+				<i class="icon ion-email placeholder-icon"></i>
+		    	<input type="email" placeholder="email@mail.com" ng-model="form.email">
+			</label>
+			<div class="login-space"></div>
+		  	<label class="item item-input">
+		  		<i class="icon ion-locked placeholder-icon"></i>
+		    	<input type="password" placeholder="********" ng-model="form.passe">
+		  	</label>
+
+		  	<button 
+		  		class="button button-block button-positive" 
+		  		ng-click="connecter()"
+		  		>
+  				Se Connecter
 			</button>
 		</div>
 

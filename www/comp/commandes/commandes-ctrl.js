@@ -7,7 +7,7 @@ app.controller('commandesCtrl', ['$scope', '$http', '$ionicModal', '$ionicLoadin
 	}
 	$scope.titres = [
 		'A capturer' ,
-		'Validées',
+		'Capturées',
 		'En cours' ,
 		'En livraison' 
 	];
@@ -46,7 +46,7 @@ app.controller('commandesCtrl', ['$scope', '$http', '$ionicModal', '$ionicLoadin
 	    
 	    $scope.datas = data.data;
 	    $scope.pastilles = data.pastilles;
-
+	    //console.log('pas ' + $scope.pastilles[$stateParams.statut]);
 	    //console.log('data suce ' + JSON.stringify($scope.datas));
 	  }).
 	  error(function(data, status, headers, config) {
@@ -91,13 +91,15 @@ app.controller('commandesCtrl', ['$scope', '$http', '$ionicModal', '$ionicLoadin
   		return villesService.martinique(villeId);
   	}
 
+
   	$scope.statutService = function (commandeId, statutMaj){
 
-  		var url = 'http://fdacentral.com/api/pizza-service/app/order/etab/' + etabService.id + '/commande';
+  		var url = 'http://fdacentral.com/api/pizza-service/app/order/commande';
 
   		var data = {
   			commandeId : commandeId,
-  			statutMaj : statutMaj
+  			statutMaj : statutMaj,
+  			etab : etabService.id
   		};
 
   		$http.post( url, data ).
@@ -113,8 +115,11 @@ app.controller('commandesCtrl', ['$scope', '$http', '$ionicModal', '$ionicLoadin
 		    	$scope.datas.splice(indexSelect, 1);
 		    }
 				
-	  		$scope.pastilles[statutMaj] =$scope.pastilles[statutMaj] - 1;
-		  	$scope.pastilles[statutMaj+1] =$scope.pastilles[statutMaj+1] + 1;
+  			var paramsStatut = statutMaj-1;
+	  		$scope.pastilles[paramsStatut] = $scope.pastilles[paramsStatut] - 1;
+	  		paramsStatut +=1;
+	  		console.log('pass ' + $scope.pastilles[paramsStatut]);
+		  	$scope.pastilles[paramsStatut] = $scope.pastilles[paramsStatut] + 1;
 
 		  }).
 		  error(function(data, status, headers, config) {
@@ -127,7 +132,7 @@ app.controller('commandesCtrl', ['$scope', '$http', '$ionicModal', '$ionicLoadin
 		    alert('impossible de se connecter sur le serveur...');
 		  });
 
-  	}
+  	};
 
   	// force à recharger page active
   	$scope.charge = function(){
@@ -135,5 +140,15 @@ app.controller('commandesCtrl', ['$scope', '$http', '$ionicModal', '$ionicLoadin
   		$state.go('app.commandes', { statut : 1}, { reload: true });
   	}
 
+  	$scope.modalTitre = function(statut){
+
+  		statut = statut + 1;
+  		return $scope.titres[statut];
+
+  	};
 
 }])
+
+
+
+

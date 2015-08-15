@@ -2,10 +2,10 @@
 
     <ion-header-bar 
         ng-class="{ 
-        'bar-energized' : data.statut==0,
-        'bar-balanced' : data.statut==1,
-        'bar-positive' : data.statut==2,
-        'bar-calm' : data.statut==3
+        'bar-energized' : data.statut==1,
+        'bar-balanced' : data.statut==2,
+        'bar-positive' : data.statut==3,
+        'bar-calm' : data.statut==4
 
       }"
     >
@@ -16,7 +16,7 @@
       </div>
 
 
-      <h1 class="title">A valider</h1>
+      <h1 class="title">{{modalTitre(data.statut)}}</h1>
     
  
     </ion-header-bar>
@@ -68,14 +68,14 @@
         </div>
       </div>
 
-  <div class="button-bar" ng-show="data.statut==0">
-    <a class="button button-balanced" ng-click="statutService(data.id,1)">Accepter</a>
+  <div class="button-bar" ng-show="data.statut==1">
+    <a class="button button-balanced" ng-click="statutService(data.id,2)">Accepter</a>
     <a class="button button-assertive">Rejeter</a>
   </div>   
 
-  <a class="button button-block button-positive" ng-click="statutService(data.id,2)" ng-show="data.statut==1">Passer en cours</a>
-  <a class="button button-block button-calm" ng-click="statutService(data.id,3)" ng-show="data.statut==2">Passer en livraison</a>
-  <a class="button button-block button-assertive" ng-click="statutService(data.id,4)" ng-show="data.statut==3">Cloturer la commande</a>
+  <a class="button button-block button-positive" ng-click="statutService(data.id,3)" ng-show="data.statut==2">Passer en cours</a>
+  <a class="button button-block button-calm" ng-click="statutService(data.id,4)" ng-show="data.statut==3">Passer en livraison</a>
+  <a class="button button-block button-assertive" ng-click="statutService(data.id,5)" ng-show="data.statut==4">Cloturer la commande</a>
 
 
 

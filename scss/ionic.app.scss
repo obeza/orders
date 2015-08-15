@@ -52,7 +52,11 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 	background: $calm;
 }
 
-.login-padding {
-	padding:100px 60px 0 60px;
-
+.login {
+	padding:260px 60px 0 60px;
+	background:#f7f9f8;
+}
+.login-space{
+	height:10px;
+	background:#f7f9f8;
 }
